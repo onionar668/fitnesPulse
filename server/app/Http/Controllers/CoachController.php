@@ -69,7 +69,8 @@ class CoachController extends Controller
                 'coach' => $key->user->name,
                 'bio' => $key->bio,
                 'avatar' => $key->user->avatar_url,
-                'gym' => $key->gym?->name || 'No Gym assigned'
+                'gym' => $key->gym?->name || 'No Gym assigned',
+                'specialization' => $key->specialization
             ];
         });
 

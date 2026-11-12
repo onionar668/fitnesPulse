@@ -17,6 +17,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
+        CoachSeeder::class;
+        GymSeeder::class;
+        InfraSeeder::class;
+        ScheduleSeeder::class;
+        SubscriptionSeed::class;
+        UserSeeder::class;
 
         Region::create([
             'name' => 'Almaty',

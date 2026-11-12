@@ -31,7 +31,7 @@ function Hero({
   };
 
   return (
-    <section className="flex flex-col gap-4 mb-10">
+    <section className="flex flex-col gap-4 mb-10 mt-10">
       <div className="flex justify-around items-center mb-10">
         <div className="flex flex-col gap-4">
           <div className="flex gap-2 items-center">

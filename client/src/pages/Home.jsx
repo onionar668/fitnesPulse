@@ -71,7 +71,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div id="catalog" className="flex flex-wrap gap-4 justify-center">
+        <div id="catalog" className="flex flex-wrap w-[90%] mx-auto gap-4 justify-center">
           {filtredGyms.length > 0 ? (
             <>
             {filtredGyms.map((gym) => (

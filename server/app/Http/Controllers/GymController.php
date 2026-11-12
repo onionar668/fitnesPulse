@@ -128,7 +128,7 @@ class GymController extends Controller
                 'bio' => $el->bio,
                 'avgRating' => $el->reviews->avg('rating'),
                 'reviewCount' => $el->reviews->count(),
-                'specialization' => $el->speciazlization,
+                'specialization' => $el->specialization,
                 'price' => $el->price
             ];
         });
