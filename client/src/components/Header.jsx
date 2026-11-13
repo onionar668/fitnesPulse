@@ -33,14 +33,14 @@ function Header() {
       </div>
       <ul className="flex gap-5">
         <li>
-          <a className="text-gray-500 hover:text-blue-500 font-medium" href="/">
+          <button className="text-gray-500 hover:text-blue-500 font-medium" onClick={() => navigate('/')}>
             Gyms
-          </a>
+          </button>
         </li>
         <li>
-          <a className="text-gray-500 hover:text-blue-500 font-medium" href="">
+          <button className="text-gray-500 hover:text-blue-500 font-medium" onClick={() => navigate("/coaches")}>
             Coaches
-          </a>
+          </button>
         </li>
         <li>
           <a className="text-gray-500 hover:text-blue-500 font-medium" href="">

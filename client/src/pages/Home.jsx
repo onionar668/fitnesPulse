@@ -94,7 +94,7 @@ function Home() {
                   </span>
                   <div className="flex items-center gap-1 px-2.5 py-1 bg-slate-950/80 backdrop-blur-md rounded-lg text-xs font-bold text-white">
                     <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                    <span className="tabular-nums">{gym.avgRating || 0}</span>
+                    <span className="tabular-nums">{Number(gym.avgRating).toFixed(1) || 0}</span>
                     <span className="text-slate-400 font-normal">({gym.reviewCount})</span>
                   </div>
                 </div>

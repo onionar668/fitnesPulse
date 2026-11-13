@@ -17,12 +17,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        CoachSeeder::class;
-        GymSeeder::class;
-        InfraSeeder::class;
-        ScheduleSeeder::class;
-        SubscriptionSeed::class;
-        UserSeeder::class;
 
         Region::create([
             'name' => 'Almaty',
@@ -53,6 +47,15 @@ class DatabaseSeeder extends Seeder
         ]);
         Region::create([
             'name' => 'Mangistay region',
+        ]);
+
+        $this->call([
+            CoachSeeder::class,
+            GymSeeder::class,
+            InfraSeeder::class,
+            ScheduleSeeder::class,
+            SubscriptionSeed::class,
+            UserSeeder::class,
         ]);
     }
 }

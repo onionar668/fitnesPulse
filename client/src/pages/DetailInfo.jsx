@@ -11,19 +11,36 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import ReviewModal from "../components/ReviewModal";
+import toast from "react-hot-toast";
 
 function DetailInfo() {
-  const [gym, setGym] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
+  const [gym, setGym] = useState(null);
+  const [isOpen, setIsOpen] = useState(false)
 
+  const handleBooking = async(scheduleId) => {
+    try{
+      const token = localStorage.getItem('token')
+      await axios.post('http://localhost:8000/api/v1/booking', {
+        schedule_id: scheduleId
+      }, {headers: {Authorization: `Bearer ${token}`}})
+
+      toast.success('Вы успешно записались на тренировку')
+    }catch(err){
+      const errorMessage = err.response?.data?.message
+      if(errorMessage.includes('you already booked')){
+        toast.error('Вы уже записаны на тренировку')
+      }
+    }
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           `http://localhost:8000/api/v1/gym/${id}`,
         );
-        console.log(response.data.data);
         setGym(response.data.data);
       } catch (err) {
         console.log(err);
@@ -84,7 +101,7 @@ function DetailInfo() {
                 <Wallet />
                 Buy club card
               </button>
-              <button className="bg-slate-200 rounded-xl py-2 cursor-pointer">
+              <button onClick={() => setIsOpen(true)} className="bg-slate-200 rounded-xl py-2 cursor-pointer">
                 Reviews for club
               </button>
             </div>
@@ -229,6 +246,7 @@ function DetailInfo() {
                   <div className="text-xs text-slate-500">{el.coach}</div>
                 </div>
                 <button
+                  onClick={() => handleBooking(el.id)}
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap shrink-0 bg-blue-600 hover:bg-blue-700 text-white shadow-xs`}
                 >
                   Записаться
@@ -244,7 +262,8 @@ function DetailInfo() {
               Отзывы о клубе ({gym?.reviews.length}) {gym?.name}
             </h2>
             <span
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap shrink-0 bg-blue-600 hover:bg-blue-700 text-white shadow-xs`}
+              onClick={() => setIsOpen(true)}
+              className={`px-4 cursor-pointer py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap shrink-0 bg-blue-600 hover:bg-blue-700 text-white shadow-xs`}
             >
               + Написать отзыв
             </span>
@@ -290,6 +309,7 @@ function DetailInfo() {
           </div>
         </div>
       </div>
+      <ReviewModal  isOpen={isOpen} setIsOpen={setIsOpen} gymId={id}/>
     </section>
   );
 }

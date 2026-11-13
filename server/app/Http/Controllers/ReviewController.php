@@ -52,7 +52,7 @@ class ReviewController extends Controller
         }
 
         $review = Review::create([
-            'description' => $request->desc,
+            'description' => $request->description,
             'rating' => $request->rating,
             'user_id' => $user->id,
             'gym_id' => $gymId
